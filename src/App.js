@@ -46,15 +46,15 @@ const getCoin = (name, hash) =>
     .then(r => r.json())
     .then(res => res.confirmations);
 
-const getPrice = () =>
-  fetch("https://www.namebase.io/api/exchange/sell")
-    .then(r => r.json())
-    .then(r => (r.price * 4246.99).toFixed(5));
+// const getPrice = () =>
+//   fetch("https://www.namebase.io/api/exchange/sell")
+//     .then(r => r.json())
+//     .then(r => (r.price * 4246.99).toFixed(5));
 
 export default function App() {
   const [coins, setCoins] = useState([]);
   const [pause, setPause] = useState(false);
-  const [price, setPrice] = useState();
+  // const [price, setPrice] = useState();
   const [refreshing, setRefresh] = useState(false);
   const refresh = useCallback(() => {
     if (pause) return setRefresh(false);
@@ -84,7 +84,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>HZFE HNS Confirmations Ranking</h1>
-      {price ? <div className="price">{price}</div> : ""}
+      {/* {price ? <div className="price">{price}</div> : ""} */}
       <ul>
         {coins
           .sort((a, b) => b.coin - a.coin)
