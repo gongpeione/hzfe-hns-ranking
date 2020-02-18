@@ -41,6 +41,14 @@ const arr = [
   }
 ];
 
+let hasPermission = false;
+Notification.requestPermission().then(function(permission) {
+  // If the user accepts, let's create a notification
+  if (permission === "granted") {
+    hasPermission = true;
+  }
+});
+
 const getCoin = (name, hash) =>
   fetch(`${url}/${hash}`)
     .then(r => r.json())
@@ -63,6 +71,9 @@ export default function App() {
     Promise.all(
       arr.map(async (item, index) => {
         const coin = await getCoin(item.name, item.hash);
+        if (+coin === 102) {
+          new Notification(`${item.name} 到 102 了！✌️`);
+        }
         return { name: item.name, coin, hash: item.hash };
       })
     )
