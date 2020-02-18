@@ -17,7 +17,7 @@ const arr = [
   },
   {
     name: "地瓜🍠",
-    hash: "ca95b8adf243180e28a4cfcf22c319dd8d07c836e71318fed3b3df8be48e4338"
+    hash: "08408a8462e17cf9b69758c46826b490cff019bd62cd480ea63e85926b1b1870"
   },
   {
     name: "阿爆💣",
@@ -29,7 +29,8 @@ const arr = [
   },
   {
     name: "阿树🌲",
-    hash: "db1533183eeadc0889e21fd7109bcd023f584df15bf3c592a5af8b57916cf3b8 "
+    hash: "db1533183eeadc0889e21fd7109bcd023f584df15bf3c592a5af8b57916cf3b8",
+    btc: 0.067
   },
   {
     name: "夜喵🐱",
@@ -71,7 +72,7 @@ export default function App() {
     Promise.all(
       arr.map(async (item, index) => {
         const coin = await getCoin(item.name, item.hash);
-        if (+coin === 102) {
+        if (+coin === 102 && hasPermission) {
           new Notification(`${item.name} 到 102 了！✌️`);
         }
         return { name: item.name, coin, hash: item.hash };
